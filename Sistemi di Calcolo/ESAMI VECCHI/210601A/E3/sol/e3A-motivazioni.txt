@@ -1,0 +1,24 @@
+Domanda 1: A
+
+  6200 413 62 42 916 400 520
+    96   6  0  0  14   6   8 
+
+ 96 -> | 96(0) |      |      |       | cold miss
+  6 -> | 96(1) | 6(0) |      |       | cold miss
+  0 -> | 96(2) | 6(1) | 0(0) |       | cold miss
+  0 -> | 96(3) | 6(2) | 0(0) |       | cache hit
+ 14 -> | 96(4) | 6(3) | 0(1) | 14(0) | cold miss
+  6 -> | 96(5) | 6(0) | 0(2) | 14(1) | cache hit
+  8 -> |  8(0) | 6(1) | 0(3) | 14(2) | capacity miss
+
+La risposta corretta è: 8, 6, 0, 14
+ 
+Domanda 2: D
+
+Se lo spazio logico di memoria è molto grande anche il numero di pagine sarà grande. Ad esempio per spazi logici a 64 bit e pagine da 4 KiB = 2^12 byte si hanno 2^52 pagine e uno spazio necessario per pagina di almeno 2^52 byte, ampiamente sopra l'ordine dei MiB previsti dalla domanda.
+
+Domanda 3: B
+Basta impostare l'equazione 1/(alpha/2+1-alpha)=3/2 ricavando alpha.
+
+Domanda 4: C
+Si entra nello stato waiting sempre dallo stato running, non dallo stato ready. Infatti, per invocare una system call è necessario che il processo sia in esecuzione.

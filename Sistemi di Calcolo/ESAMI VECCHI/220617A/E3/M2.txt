@@ -1,0 +1,6 @@
+Spazio logico a 32 bit: 2^32 byte indirizzabili
+Ogni pagina è 2KB, ossia 2^11 byte
+Il numero di pagine dovra essere: 2^32-2^11 = 2^(32-11) = 2^21
+Il numero di entry nella tabella delle pagine corrisponde al numero di pagine, quindi 2^21 = 2097152 entry 
+Ogni entry è 32 bit = 4 byte
+La tabella delle pagine occuperà: 4 * 2097152 = 8388608 = 8 MB

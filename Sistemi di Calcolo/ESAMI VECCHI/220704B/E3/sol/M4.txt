@@ -1,0 +1,7 @@
+La rappresentazione ottale dei permessi 0643 può essere tradotta nella seguente rappresentazione binaria:
+
+0  |   6  |  4  |  3  |
+   | user |group|other|
+   |  rw- | r-- | -wx |
+ 
+La risposta errata è quindi la A dato che il proprietario non ha il permesso 'x' di esecuzione. 

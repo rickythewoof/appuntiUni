@@ -1,0 +1,1 @@
+Constant propagation in quanto ad x è assegnato il valore costante 7 quindi è possibile rimuovere la variabile e sostituirla in tutti i punti in cui essa è presente con il valore 7.

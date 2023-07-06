@@ -1,0 +1,18 @@
+Considerando la legge di Amdahl, e supponendo che sia A la parte del programma che 
+richiede il 60% del tempo totale di esecuzione, abbiamo:
+
+              1
+1.9 = ----------------- 
+       0.6/k + 1 - 0.6
+	   
+Da cui:
+
+1.9*0.6/k + 1.9 - 1.9*0.6 = 1
+
+1.9*0.6/k = 1 - 1.9 + 1.9*0.6
+
+       1.9 * 0.6
+k = ----------------- = 4,75
+    1 - 1.9 + 1.9*0.6
+    
+Quindi 1/4,75≈0,2 => 80%

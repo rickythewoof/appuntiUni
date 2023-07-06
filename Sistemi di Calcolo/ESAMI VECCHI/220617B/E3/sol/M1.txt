@@ -1,0 +1,3 @@
+- Le risposte B e D sono errate perchè i percorsi ./~ e ../~ non sono validi
+- La risposta A è errata perchè il percorso ../other non esiste
+- La risposta esatta è C, che sposta il file stuff nella directory "hisstuff"

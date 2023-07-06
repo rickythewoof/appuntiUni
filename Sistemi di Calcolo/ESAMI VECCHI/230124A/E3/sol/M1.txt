@@ -1,0 +1,10 @@
+In memoria la struct avrà il seguente layout:
+
+typedef struct S {
+  char *c;		|xxxx|
+  char d;		|x.|
+  short e;		|xx|
+} S;
+
+dove "." indica padding e "x" byte usati dal field. 
+Quindi la dimensione della struct e' 8 byte, ossia la risposta C.

@@ -1,0 +1,33 @@
+Spazio logico a 24 bit: 2^24 byte indirizzabili
+Ogni pagina è 1MB, ossia 2^20 byte
+Il numero di pagine dovra essere: 2^24-2^20 = 2^(24-20) = 2^4 = 16
+Il numero di entry nella tabella delle pagine corrisponde al numero di pagine, quindi 2^4 = 16 entry 
+Data la tabella delle pagine:
+
+0 -> 0x3
+1 -> 0x9
+2 -> 0xD
+3 -> 0x1
+4 -> 0xA
+5 -> 0x7
+6 -> 0xB
+7 -> 0x2
+8 -> 0xF
+9 -> 0x6
+A -> 0x8
+B -> 0xC
+C -> 0x0
+D -> 0xE
+E -> 0x4
+F -> 0x5
+
+Considerati gli indirizzi logici dati, questi sono i relativi mapping su indirizzi fisici:
+
+
+0x04AE20 -> 0x34AE20
+
+0xE42AA0 -> 0x442AA0
+
+0x7A9BB0 -> 0x2A9BB0
+
+

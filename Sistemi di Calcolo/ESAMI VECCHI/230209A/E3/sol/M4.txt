@@ -1,0 +1,7 @@
+La rappresentazione ottale dei permessi 0125 puo' essere tradotta nella seguente rappresentazione binaria:
+
+0  |   1  |  2  |  5  |
+   | user |group|other|
+   |  --x | -w- | r-x |
+ 
+La risposta errata è quindi la B dato che other non ha il permesso 'w' di scrittura. 

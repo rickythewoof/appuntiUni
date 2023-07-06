@@ -1,0 +1,17 @@
+B. 2. 
+
+Poiché l’array e' allineato a un indirizzo multiplo di 16, puo' essere partizionato in tre blocchi da 16 byte, ciascuno dei quali può essere portato in cache come un unico pacco:
+- blocco 0: v[0], v[1], v[2], v[3]
+- blocco 1: v[4], v[5], v[6], v[7]
+- blocco 2: v[8], v[9], v[10], v[11]
+Poiche' la cache e' completamente associativa, ogni blocco dell’array può essere portato in uno qualsiasi dei due blocchi di cache. 
+
+La sequenza di accessi a memoria 3':
+- scrive v[0] (blocco 0): miss (cold) – blocco 0 portato nel primo blocco cache
+- scrive v[1] (blocco 0): hit
+- scrive v[10] (blocco 2): miss (cold) – blocco 2 portato nel secondo blocco cache
+- scrive v[8] (blocco 2): hit
+- legge v[10] (blocco 2): hit
+- scrive v[2] (blocco 0): hit
+- legge v[1] (blocco 0): hit
+- scrive v[9] (blocco 2): hit

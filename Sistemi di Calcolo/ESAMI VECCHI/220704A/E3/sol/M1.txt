@@ -1,0 +1,4 @@
+A è la risposta corretta perché x è una variabile globale inizializzata a 0
+B è errata perché malloc restituisce indirizzi nell'heap
+C è errata perché il valore di x non è costante e quindi non può essere allocato in rodata
+D è errata perché s2 è una variabile locale

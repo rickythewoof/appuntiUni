@@ -1,0 +1,9 @@
+- Dopo la prima operazione: eax = 0
+- Dopo la seconda operazione: eax = ax = 1337 (10100111001 in binario)
+- Dopo la terza operazione: ecx = 2
+- La quarta operazione esegue uno shift a destra su ax di 2 posizioni: eax = ax = 334 (101001110 in binario)
+- Dopo la quarta operazione: eax = 334 & 11 = 10
+
+La A è falsa: 10 | 10 = 10 != 20
+La B è falsa: 10 ^ 15 = 5 != 20
+La C è falsa: 10 >> 1 = 5 != 10

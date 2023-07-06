@@ -1,0 +1,25 @@
+Domanda 1: B
+
+Eseguendo gcc -c bazinga.c si ottiene un file in linguaggio macchina NON ancora eseguibile. Per renderlo eseguibile occorre svolgere anche la fase di linking con gcc -o bazing bazinga.o.
+ 
+Domanda 2: D
+
+I permessi saranno:
+
+0: prima cifra di un numero ottale
+3: scrittura (2) ed esecuzione (1) dall’utente proprietario
+1: esecuzione (1) dal gruppo proprietario
+4: solo lettura (4) per tutti gli altri utenti 
+
+Quindi 0314
+
+Domanda 3: B
+Basta impostare l'equazione 1 / (0.6+(0.4*0.7)) = ~1.14
+
+Domanda 4: D
+
+- "p contiene un indirizzo della stack" è falsa perchè a p viene assegnato il risultato di malloc() che ritorna indirizzi del heap.
+- "non è possibile determinate quanti byte saranno allocati da malloc perchè la variabile i non è stata inizializzata" è false perchè viene solo valutata la dimensione di i (un intero)
+- "p è memorizzato in heap" è false perchè p è una variabile locale e quindi si troverà in stack o in un registro.
+- "*p dipende dal valore dello stack pointer iniziale per l'esecuzione della funzione foo" è vera perchè *p riceve l'indrizzo dell'argomento a che sappiamo essere passato via stack e quindi *p dipenderà dal valore dello stack pointer.
+

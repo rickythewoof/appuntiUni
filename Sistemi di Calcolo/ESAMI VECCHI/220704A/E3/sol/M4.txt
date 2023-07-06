@@ -1,0 +1,7 @@
+La rappresentazione ottale dei permessi 0532 può essere tradotta nella seguente rappresentazione binaria:
+
+0  |   5  |  3  |  2  |
+   | user |group|other|
+   |  r-x | -wx | -w- |
+ 
+La risposta errata è quindi la C dato che il gruppo proprietario non ha il permesso 'r' di lettura. 

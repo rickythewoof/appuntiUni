@@ -1,0 +1,7 @@
+La rappresentazione ottale dei permessi 0735 puo' essere tradotta nella seguente rappresentazione binaria:
+
+0  |   1  |  3  |  5  |
+   | user |group|other|
+   |  rwx | -wx | r-x |
+ 
+La risposta errata è quindi la C dato che il gruppo proprietario non ha il permesso 'r' di lettura. 

@@ -1,0 +1,20 @@
+- La risposta A è falsa perchè la struct richiede 16 byte:
+
+a     b    c     d
+xx|..|xxxx|x|...|xxxx|
+
+- La risposta B è falsa perchè riordinando i campi nel modo:
+
+b    a     d    c
+xxxx|xx|..|xxxx|x|...|
+
+si ottiene una size di 16 byte
+
+- La risposta C è falsa perchè, come vista per la risposta A, la struct originale ha 6 byte di padding.
+
+- La risposta D è vero perchè posizionando i campi nell'ordine [b, d, a, c], si ottiene la seguente struttura:
+
+b      d   a c
+xxxx|xxxx|xx|x|.|
+
+Avendo quindi una dimenzione pari a 12 con un 1 byte di padding.

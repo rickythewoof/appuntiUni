@@ -1,0 +1,8 @@
+ r   w   x
+b_2 b_1 b_0
+
+Proprietario: lettura (r), scrittura (w), esecuzione (x) => 111 => 7
+Gruppo: lettura e scrittura => 110 => 6
+Altri: lettura => 100 => 4
+
+Quindi: 0764 (notazione ottale per convenzione inizia con uno "0")

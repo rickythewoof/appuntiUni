@@ -1,0 +1,11 @@
+La il fattore k di ottimizzazione si ottiene dalla legge di Amhdal:
+
+S = 1 / (alpha/k + 1 - alpha)
+
+alpha = 0.4
+S = 1.25
+
+Quindi, si ricava:
+k = 2
+
+Se k = 2, allora vuol dire che occorre dimezzare il tempo di esecuzione della porzione di codice => 50%

@@ -1,0 +1,20 @@
+Riga: int main() {
+
+=> 1 processo (main) attivo
+
+Riga:  if (fork()!=0) {
+
+=> 2 processi attivi: main, child A del main
+
+Riga:    fork();
+
+=> questo codice e' eseguito solo dal processo del main
+=> 3 processi attivi: child A, main, child B del main
+
+Riga:    fork();
+
+=> questo codice viene eseguito dal processo main e dal child B
+=> ed ognuno di esso crea un nuovo processo
+=> 5 processi attivi: child A, main, child B, child C del main, child D di B
+
+Quindi se non consideriamo il main, sono stati generati 4 processi, quindi la riposta e' la B.

@@ -1,0 +1,10 @@
+La porta implementa la seguente tabella di verità:
+
+| X | Y | RIS |
+---------------
+| 0 | 0 |  0  |
+| 0 | 1 |  1  |
+| 1 | 0 |  1  |
+| 1 | 1 |  0  |
+
+il risultato quindi è coincidente con l'operatore XOR

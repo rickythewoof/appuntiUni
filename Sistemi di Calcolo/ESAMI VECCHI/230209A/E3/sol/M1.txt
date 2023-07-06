@@ -1,0 +1,3 @@
+Risposta B: 0xF5E6B2A1 
+
+C3 è sostituito da E6, D4 da F5, e poi i byte vengono letti in ordine inverso (da 0x1003 a 0x1000) a causa dell’endianness
