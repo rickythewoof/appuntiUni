@@ -3,7 +3,7 @@
 ## Q1. Collision Resistance
 
 1. A hash function $H$ is *weakly collision resistant* if it's computationally hard to calculate, given a message $m$, another message $m\prime \neq m$ such that $H(m\prime) = H(m)$. A hash function is *strongly collision resistant* if it's computationally hard to find a pair $<m, m\prime>$ such that both have the same hash
-2. We can prove this by proving the inverse, since !*strong* -> !weak:
+2. We can prove this by proving the inverse, since !*weak* -> !*strong*:
 If we found a polynomial-time function $F$ that, given a message $m$ returns another message $m\prime$ s.t. $H(m) = H(m\prime)$, then we would be able to arbitrarily create pairs $<m, F(m)>$, thus breaking strong collision resistance requirements.
 3. It's not because it fails on being a  collision resistant function. given the result of this hash function, it's easy to find multiple colliding pairs.
 
