@@ -49,3 +49,35 @@ The writing process p uses two distinct phase to write a new value, since only o
 - **write**: Writer sends simply an ordinary WRITE message with current timestamp-value pair, and then waits until it receives ACK from $N-f$ processes.
 Basically it sends a write update two times, so that a majority of correct processes has the update locally saved.
 # Consensus
+Ideally we want the same properties as the crash failure environment, for this reason we will define two different validity requirements
+## Weak Byzantine Consensus
+In this kind of weak form we formulate a validity property that's valid if and only if all processes are correct.
+### Properties
+- **WBC1**: _Termination_ - Every correct process will eventually decide.
+- **WBC2**: _Weak validity_ - If all processes are correct and propose the same value v, then no correct process decides a value different from v, and in this context if some process decides v, then it was proposed by some process.
+- **WBC3**: _Integrity_ - No process decides twice.
+- **WBC4**: _Agreement_ - If a correct process decides _v_, then every correct process will eventually decide _v_ too.
+## Strong Byzantine Consensus
+In this requirements we ask a bit more in the case that there is a byzantine process
+- **SBC1**: _Termination_ - Every correct process will eventually decide.
+- **SBC2**: _Strong validity_ - If all processes are correct and propose the same value v, then no correct process decides a value different from v. Otherwise, a correct process may decide a value that was proposed by some correct process or the special value $\square$. 
+- **SBC3**: _Integrity_ - No process decides twice.
+- **SBC4**: _Agreement_ - If a correct process decides _v_, then every correct process will eventually decide _v_ too.
+## Byzantine Generals Problem
+Each general starts with its own value v(i), that must be communicated by the i-th general to the others, and then each generals uses a method to combine the values of v(1),...,v(n) to choose a plan of action. We'll select f(v) as the function method to choose the plan, which must be defined in a way that:
+1. all loyal generals decide upon the same plan of action -> deterministic function
+2. a small number of traitors cannot cause the loyal generals to adopt a "bad plan" -> we can base the vote v(i) upon a majority vote among them.
+The issue becomes of how a loyal general should communicate with other loyal generals.
+We'll change the wording: the general that gives out the order is the **commander**, while the others are **lieutenants**
+### Oral Message communication model:
+- every message that is sent is delivered correctly
+- message source is known to the receiver
+- message omissions can be detected
+We'll inductively define protocol OM($f$), with $f$ being the max number of byzantine processes:
+- for $f$ = 0:
+	- commander sends its value to every lieutenant. Each one uses the value he receives from the commander, or uses default value if receives no value.
+- for $f$>0 (gossip):
+	- commander sends the value to every lieutenant, and for each i, let $v_i$ be the value the lieutenant receives from the commander, or else RETREAT if he receives no value. (the lieutenant i acts as the commander in algorithm OM($f-1$) to send the value $v_i$ to each of the N-2 other lieutenants).
+	- For each i and j such that i != j, let $v_j$ be the value lieutenant i received from lieutenant j in step 2, or else RETREAT. Lieutenant i uses the same value majority.
+There will be sent N*$f$ messages, strongly inefficient!
+We can use Cryptography to validate what the commander tells.
