@@ -55,7 +55,19 @@ From Little's Theorem we can assume the following things, given a steady state:
 - $N^q = \lambda T^q$
 - $T = T^q + 1/\mu$
 We can derive an utilization factor $\rho = \lambda/s\mu$. If $\rho \ge 1$ there can be no steady state, since the arrival rate is higher than what the servants can deal with.
-
+### very large performance model assumption
+We can create a system performance model in which we assume that population is "infinite", workloads are homogeneous, queue is infinitely big, and that we go to an operational equilibrium. We will model this through the use of Markov Chains, in which requests (rate $\lambda$) push the systems state further down, and the processing of them (rate $\mu$) pushes out. Using flow equilibrium equation we get that
+- k = 0 -> $\mu p_1 = \lambda p_0$
+- k = 1 -> $\lambda p_0 + \mu p_2 = (\lambda + \mu) P_1$
+- k = i -> $\lambda p_{i-1} + \mu p_{i+1} = (\lambda + \mu) P_i$
+$$
+p_k = \frac \lambda \mu ^k p_0
+$$
+$$
+p_0 = 1-\sum_{i=1}^{\infty}p_i = 1 - \sum_{i=1}^{\infty}(\frac \lambda \mu )^i p_0
+$$
+![[Pasted image 20250123150446.png]]
+![[Pasted image 20250123150822.png]]
 ## Cost Model
 this focuses on the bare costs, like hardware, software, telecommunication, personnel ...
 # Elasticity
@@ -63,3 +75,15 @@ IS the degree to which a system can adapt to workload changes by provisioning an
 We can adapt by doing a dynamic scalability, which can be of two directions
 - Vertical (scale-up): We allocate more powerful resources. Grows exponentially in price/capability.
 - Horizontal (scale-out): We allocate more resources with the same capacity. This makes the scalability linear and can also guarantee better distributed properties.
+# Simulation
+Sometimes it may not be suitable to analyze real systems, based on too many assumptions and a too general system model. In those cases a viable alternative is represented by Simulations that can take multiple forms:
+- By experimenting with the actual system
+- By experimenting with a model of the system, which can be both physical or mathematical.
+We'll do the second through the use of a discrete-time event simulation, which models the evolution of the system as it evolves through time by a representation in which the state variables change instantaneously at separate points in time. We'll create a Discrete-Event simulation model through different components such as:
+- **System State**
+- **Simulation Clock**
+- **Event list**
+- **Statistical Counters**
+- **Initialization routine**
+- **Timing routine**
+![[Pasted image 20250123153219.png]]![[Pasted image 20250123155003.png]]
