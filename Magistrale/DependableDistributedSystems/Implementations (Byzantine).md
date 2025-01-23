@@ -81,3 +81,46 @@ We'll inductively define protocol OM($f$), with $f$ being the max number of byza
 	- For each i and j such that i != j, let $v_j$ be the value lieutenant i received from lieutenant j in step 2, or else RETREAT. Lieutenant i uses the same value majority.
 There will be sent N*$f$ messages, strongly inefficient!
 We can use Cryptography to validate what the commander tells.
+# Ledger & Blockchain
+A **Ledger** is a written or computerized log of all transactions, and our goal is to create a network of Distributed Ledgers that will have the guarantees of:
+- Consistency
+- Integrity
+- Availability
+We'll do it through the use of the **Blockchain**, which is a decentralized and distributed data structure used to store transaction records. A blockchain is based on multiple blocks, containing a set of transactions collected by processes, that are permanently chained together and replicated across multiple clients. A blockchain is a form of distributed ledger, but it isn't the only one!
+
+|       BLOCK        |
+| :----------------: |
+|       $B_i$        |
+| $H_i = H(B_{i-1})$ |
+|       $Tx_1$       |
+|       $Tx_2$       |
+|       $...$        |
+|       $Tx_n$       |
+### How to make it work?
+In order to be sure that a transaction is valid, nodes need to know the last state of the blockchain and the leader, and be sure that a transaction is valid in the ledger.
+Once a transaction is confirmed to be valid, it gets added to a block. 
+
+Since we are in a distributed network, multiple people may be interested to add their block to the Blockchain (even malicious people!), so *attaching a new block requires agreement and consensus*.
+## Blockchain classification
+
+|                    | **Public**                                                                                              | **Private**                                                                                                                                                            |
+| ------------------ | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Permissioned**   | Everyone can submit transaction and access blockchain data, but few have control over block management. | Only authorized entities can access data, submit transactions, and manage blocks. This is the case of the Quality control checking blockchains ~~marketing bullshit~~) |
+| **Permissionless** | This is the case of blockchain network as we know them, anyone can access the blockchain and manage it. | Nonsense                                                                                                                                                               |
+### Private Permissioned Blockchains 
+In this case we'll need to just create a system model in which byzantine failure can happen. We'll use a **Practical Byzantine Fault Tolerance** model, based on the use of cryptography to authenticate, and assuming that everyone in the network knows each one's public key to verify them.
+The approach uses a mix of Byzantine Generals, and a Primary backup approach, with the idea of:
+1. The client sends the request to the primary replica
+2. The replica multicast the requests to the backup (*pre-prepare, prepare*, to know that non-faulty replicas agree on a total order of execution for requests in a same view, and that there are more $2f$ replicas that agree)
+3. Replicas commit the requests (*Commit*) and send the reply directly to the client
+4. Client waits for $f+1$ replies from different replies with the same result
+
+### Public Permissionless Blockchains
+Since on a permission-less blockchain "everyone is the same", PBFT algorithms do not work. In this case we'll use a **Proof of X** approach to reach consensus, electing a leader based on rules X, basically running a competition.
+#### Proof of Work
+Idea is based to have a place in the block in which a number can be put. We want to find a number such that the hash of the block is smaller than a given *target*, that can be dynamically adjusted to better fit the blockchain needs.
+This works, and the target can be dynamically adjusted so that we can limit the possibility of having two processes concurrently win, but the problem is that the process is incredibly power-hungry.
+Miners will have a monetary incentive to try and find the number, and to not cheat at the game since invalid txn don't give the reward to the miner. An attacker would need to have access to an incredible resource (50% of the computational power of the network) to not only create a valid block and mine it, but also to create additional blocks such that his cannot be modified anymore!
+To be sure that a block is valid is to check 5/6 blocks behind, which are considered more secure. With this we can guarantee integrity and remove double-spending fraud.
+#### Proof of stake
+This is the new way to elect a leader without wasting computational resources. It's based on the fact that a leader is elected based on its stakes (probability of minting a block is proportional to the wallet size). it's what now is mandatory in coins such as *Ethereum*.
