@@ -93,4 +93,11 @@ Will only write the added deliveries:
 
 ### 2
 Not without some more information
-
+# Exercise Week 7
+## 1 
+1. If we consider that all processes aren't going to fail then all proposals will be eventually written correctly, even if in a round they have a concurrent read and they won't work anymore for that
+2. In the case of crashing register we may have issues, specifically with which a crashed process that was writing may be returning the actual value or the one before it indefinitely. We don't have agreement! We need atomic registers.
+## 2.
+*High level description*: every process sends its broadcast request to its leader. Different leaders will start a consensus protocol on the ordering list of the requests received, and then will start sending broadcast messages through it's fifo p2p link.
+## 3.
+The token system doesn't do nothing, this is just a causal broadcast. Even tho two messages are sent in two different times by two different processes (because of token passing), since the messages are concurrent the causal order property doesn't apply to them, whatever process orders however they want them. 
