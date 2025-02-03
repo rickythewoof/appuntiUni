@@ -113,7 +113,7 @@ Earliest start time is optimal, we "normalize" the depth of a set of open interv
 - Thus we have $d$ lectures overlapping at time $s_j + \epsilon$. By lower bound, then GREEDY = $depth$ $\le$ OPT => GREEDY = OPT
 ### Lateness minimization
 We have a single resource processing one job at a time. Job j requires $t_j$ units of processing time and its due at time $d_j$. if j starts at time $s_j$, it'll finish at time $f_j = s_j + t_j$. 
-We'll calculate lateness as $ l_j =  max {0, $f_j-d_j}. And we'll schedule al jobs to minimize the maximum lateness $L = max_j l_j$.
+We'll calculate lateness as $ l_j =  max {0, $f_j-d_j$}. And we'll schedule all jobs to minimize the maximum lateness $L = max_j l_j$.
 Here too we have multiple possible ways: _shortest processing time_, _earliest due time_, _smallest slack_. We can see with counterexamples 
 ![[Pasted image 20250131125812.png]]
 ``` 
@@ -274,6 +274,43 @@ if $w_i > w$ -> $OPT(i, w) = OPT(i-1, w)$
 else -> $OPT(i, w) = max\{OPT(i-1, w), v_i + OPT(i-1, w-w_i)\}$
 
 We'll implement M in a bottom-up approach, and we'll scan the optimal solution in top-down. This algorithm is pseudo-polynomial in time, since it depends on the max weight limit $W$. In fact, this algorithm takes$O(nW)$ in time and space!
+## Sequence Alignment
+The idea is to calculate how similar are two strings, considering as a cost the sum of mismatches and gaps.
+Given two strings $x_1, x_2, ..., x_m$ and $y_1, y_2, ..., y_n$ find the min cost alignment, which is a set of ordered pairs $x_i, y_j$ such that each item occurs in at most one pair and there are no crossings.
+this cost of alignment is
+$$
+cost(M) = \sum_{(x_i, y_j)\in M}{a_{x_i, y_j}} + \sum_{i:x_i\ unmatched}{\delta}+ \sum_{j:y_j\ unmatched}{\delta}
+$$
+We define our $OPT(i,j)$ as the min cost of aligning prefix strings $x_1, x_2, ..., x_i$ and $y_1, y_2, ..., y_j$, having three different cases
+- Case 1: OPT matches $x_i, y_j$
+	- pay mismatch cost + cost of aligning rest of string ($OPT(i-1, j-1)$)
+- Case 2: OPT leaves $x_i$ unmatched
+	- Pay gap price + min cost of rest ($OPT(i-1, j)$)
+- Case 3: OPT leaves $y_j$ unmatched
+	- Pay gap price + min cost of rest ($OPT(i, j-1)$)
+### Hirschsberg's Algorithm for sequence alignment
+Works by considering: let $f(i, j)$ be the shortest path from $(0,0)$ and $(i,j)$. We'll know that $f(i,j)=OPT(i,j)$. We have also $g(i,j)$, which is the shortest path from $(i,j)$ to $(m,n)$.
+The shortest path that uses $(i,j)$ is $f(i,j)+g(i,j)$.
+- **Divide**: We'll find an $q$ that minimizes  $f(q, n/2)+g(q,n/2)$; aligning $x_q$, and $y_{n/2}$. 
+- **Conquer**: Recursively compute optimal alignment in each piece
+Hirschberg's running time will be $O(mn\ logn)$.
+## Bellman-Ford
+It's the problem of finding the shortest path in a diagraph $G=(V,E)$, with arbitrary edge cost (also negative).
+We cannot use Dijkstra, nor can we adapt the problem by reweighing. We have also the issue of negative cycles that can infinitely reduce the weight. So we'll need to find the shortest path that has also simple cycles. We'll model our algorithm by considering two possibilities:
+- Cheapest $v-t$ path uses $\le i-1$ edges.
+	- $OPT(i,v) = OPT(i-1, v)$
+- Cheapest $v-t$ path uses exactly $i$ edges:
+	- If $(v,w)$ is the first edge, then $OPT$ uses $(v,w)$ and then selects best $w-t$ paths using $\le i-1$ edges, so we'll try and find optimal path from all possible nodes $w$ to $t$.
+	- $OPT(i,v) = \min_{(v,w)\in E}\{OPT(i-1,w)+c_{vw}\}$
+We'll also need to find a way to check for negative paths, but it's simple since if after the $n-1$ iteration we shouldn't be able to find a better path. 
+We can also do some optimization work:
+- **Space Optimization**: We can maintain two 1-dimensional arrays, instead of a 2D one
+	- $d(v)$: cost of cheapest $v-t$ path found so far
+	- $successor(v)$: next node on a $v-t$ path
+- **Performance Optimization**: We can say that if the $i-1$ iteration $d(w)$ wasn't updated, there is no reason to consider edges entering $w$ in the iteration $i$.
+Especially in the space optimization it's like in Dijkstra, we have some information about distance in every node, but we calculate it bottom-up.
+### Distance Vector protocols
+This is the kinds of protocol used in the internet, in which we use information of the neighbor node to calculate the best path to a given destination. Even though all edges that connect routers are non-negative (since they represent delays) we still use Bellman-Ford for not needing to have the knowledge of the entire network to know a best path. It's a different routing algorithm in respect to *link state routing*, in which each router stores the entire path.
 ## Dynamic Programming summary
  In general, we have this kind of outline:
 - Polynomial number of sub-problem
@@ -285,3 +322,166 @@ We'll implement M in a bottom-up approach, and we'll scan the optimal solution i
 - **Dynamic programming over intervals**: RNA secondary structure.
 
 Both Bottom-up and Top-down approaches are valid!
+# Network Flow
+We abstract graphs even more, by considering it as a way in which a material _flows_ through the edges. We have a digraph $G=(V,E)$, with a source $s \in V$ and a sink $t \in V$, and non-negative integer capacities $c(e)$ for each edge $e \in E$.
+### Min cut problem
+We then define _st cut_ as a partition $(A,B)$ of the vertices, in which $s \in A$ and $t \in B$. The capacity of the cut is the sum of the capacities of the edges from a to be
+$$
+cap(A,B) = \sum_{e\ out\ of\ A}{c(e)}
+$$
+We'll then define the problem of _min-cut_, which is finding a cut with minimum capacity
+### Max flow problem
+We'll define a _st-flow_ as a function $f$ that satisfies the following properties:
+- for each $e \in E$: $0 \le f(e) \le c(e)$ \[Capacity]
+- for each $v \in V \ {s,t}$: $\sum_{e\ into\ v}{f(e)} = \sum_{e\ out\ of\ v}{f(e)}$ \[Flow conservation]
+With this we can define  the _value_ of a flow $f$ as
+$$
+val(f) = \sum_{e\ out\ of\ s}{f(e)}
+$$
+We'll then define the problem of _max-flow_, which is finding a flow of maximum value.
+## Ford-Fulkerson Algorithm
+The idea behind finding a max-flow is to find an $s-t$ path, augmenting the flow along this path P, and doing these two operations until we get stuck. This by itself doesn't give us the optimal solution, since we don't have any way to "backtrack", to find a better distribution of the flow along all incident edges of a node.
+### Residual graph
+We'll define for this reason a "residual edge"
+- **Original edge**: $e=(u,v) \in E$
+	- flow $f(e)$
+	- capacity $c(e)$
+- **Residual edge**: $e^R = (v,u)$ which represents the actual flow
+	- We "undo" the flow sent
+	- Residual capacity
+$$ 
+c_f(e) = c(e)-f(e)\ if\ e\in E
+$$
+$$
+c_f(e) = f(e)\ if\ e^R\in E
+$$
+We remove the need of a flow by introducing the residual capacity
+We'll have a residual graph $G_f = (V, E_f)$ in which:
+- Residual edges have positive residual capacity
+- $E_f = \{e:f(e)<c(e)\}\cup \{e^R:f(e) > 0\}$
+- Key property is: $f\prime$ is a flow in $G_f$ if and only if $f+f\prime$ is a flow in $G$.
+### Augmenting path
+An _augmenting path_ is a simple $s-t$ path $P$ in the residual graph $G_f$, and the bottleneck capacity of an augmenting path $P$ is the minimum residual capacity of any edge in $P$.
+We find an interesting augmenting property: let $f$ be a flow, and let $P$ be an augmenting path in $G_f$. Then $f\prime$ is a flow and $val(f\prime) = val(f)+bottleneck(G_f, P)$
+```
+Augment(f,c,P)
+	b = bottleneck capacity for path P in G_f
+	foreach edge e in P
+		if e in E
+			f(e) = f(e) + b # Augment the path in edge of the original G
+		else
+			f(e^R) = f(e^R) - b # The residual capacity gets lowered by b
+```
+### The algorithm
+```
+Ford-Fulkerson(G,s,t,c)
+foreach edge e in E 
+	f(e) = 0
+	G_f is residual graph
+	while there exist an augmenting path P in G_f
+		f = augment(f,c,P)
+		update G_f
+return f
+```
+### max-flow min-cut theorem
+We know that in general, let $f$ be any flow and let $(A,B)$ be any cut, then the flow across $(A,B)$ equals the value of $f$. This can be easily be proven by considering that $val(f) = \sum_{e\ out\ s}f(e)$, and by flow conservation the sum of the flow in and out of v are zero, except for s.
+With this we build a weak duality, in which $val(f) \le cap(A,B)$. 
+**Pf**:
+$$
+v(f)\le \sum_{e\ out\ A}{f(e)}\ -\sum_{e\ in\ A}{f(e)} \le \sum_{e\ out\ A}{f(e)} \le \sum_{e\ out\ A}{c(e)} \le cap(A,B)
+$$
+Now we have two different theorems:
+- **Augmenting path theorem**: a flow $f$ is a max-flow if and only if there are no augmenting paths
+- **max-flow min-cut theorem**: The value of the max-flow is equivalent to the capacity of the min-cut.
+
+	**Pf**: It's directly connected to three conditions:
+	1. There exist a cut $(A,B)$ such that $cap(A,B) = val(f)$
+	2. $f$ is a max flow
+	3. there is no augmenting path with respect to $f$
+### Capacity-scaling
+In general, with the Ford-Fulkerson's algorithm, we know that an augmentation will always increase the flow of 1. Since we'll calculate the value of the flow $f*$ in at most $nC$ iterations, we know that the running time of the algorithm is $O(nmC)$. It's pseudo-polynomial!
+We need to find a way to find _good augmenting path_, which is by finding augmenting paths for all edges that have residual capacity $\ge \Delta$. We iterate over this limit, and then will do this operation for $\Delta = \Delta / 2$
+This will have a computational cost of $O(m^2\ log\ C)$ time
+### Shortest Augmenting Path
+The algorithm selects smartly the path to which we augment by selecting the shortest $s-t$ path, with for example BFS (the least hops needed is equal to the level of t).
+By doing this, the shortest augmenting path algorithm runs in $O(m^2\ n)$ time:
+- $O(m+n)$ for BFS.
+- $O(m)$ augmentations for paths of length $k$.
+- if there is an augmenting path, then there is a simple one:
+	- $1\le k< n$
+	- $O(mn)$ augmentations
+### Blocking Flow algorithm
+
+The blocking flow algorithm focuses on finding a maximal flow by iteratively finding _blocking flows_, which are augmenting flows that cannot be increased further without violating the capacity constraints. A blocking flow is a set of edge-disjoint paths that together push the flow from the source to the sink. The key idea is to find these blocking flows in each phase and augment the flow accordingly. 
+```
+Initialize(G,s,t,f,c)
+	L_g = level-graph of G-f
+	P = empty set
+	goto advance(s)
+
+Advance(v)
+	if v==t
+		augment(P)
+		remove saturated edges from L_G
+		P = empty
+		goto Advance(s)
+	if exists edge (v,w) in L_G
+		Add edge (v,w) to P
+		goto Advance(w)
+	else goto retreat(v)
+
+Retreat(v)
+	if v == s
+		stop
+	else
+		delete v and all incident edges from L_G
+		remove last edge (u,v) from P
+		goto Advance(u)
+```
+
+## Unit-capacity simple networks
+A network is a _unit capacity simple network if_:
+- Every edge capacity is 1
+- Every node apart from $s$ or $t$ has either at most 1 entering or exiting edge
+This is the case, for example, in bipartite matching.
+We can use the blocking flow algorithm to calculate maximum flow, taking $O(m\ n^{1/2})$ time:
+- At each phase of normal augmentations takes $O(m)$ time
+- After at most $n^{1/2}$ phases, $v(f*) \le v(f) + bottleneck*n{1/2}$ =>  $v(f) \ge v(f*) - n^{1/2}$
+- After at most $n^{1/2} additional augmentations, flow is optimal
+## Applications
+### Bipartite Matching
+We can formulate a problem of a bipartite matching with a network max-flow formulation.
+Given a graph $G=(L\cup R, E)$, we create another graph $G\prime = (L\cup R\cup \{s,t\}, E\prime)$ in which:
+	- we add nodes $\{s,t\}$
+	- for every $e\in E$ -> Create an edge $e$ in $E\prime$ with $c_e = \infty$
+	- for every $l \in L$, add $e =(s, l)$ with cost $c_e = 1$
+	- for every $r \in R$, add $e =(r, t)$ with cost $c_e = 1$
+We can say that Max Cardinality of a matching in $G$ equals to the value of max-flow in $G\prime$.
+Given a graph, a subset of edges M in E is a perfect matching if each node appears in exactly one edge in $M$. given $S$ a subset of $L$, $N(S)$ is the set of nodes in $R$ connected with S. a graph has a perfect matching if $N(S) \ge S$ for every subset $S$ of $L$.
+
+Possible applications can be done in
+- Survey design
+### Disjoint paths
+Given a graph, and two nodes s, and t, we want to find the max number of edge-disjoint $s-t$ paths. Easily enough we can do it by considering the digraph $G$ and doing a network flow with all unit-capacity edges. The relative value of the flow is equal to the number of different edge-disjoint paths.
+It's trivial to create the equivalent problem of _node-disjoint paths_ by transforming the graph $G$ to a relative $G\prime$ and doing a edge-disjoint path problem on that.
+### Circulation (unknown)
+Given a digraph $G=(V,E)$ with non-negative edge capacities $c(e)$ and node supply and demands $d(v)$, a *circulation* is a function that satisfies:
+- for each $e \in E$: $0\le f(e) \le c(e)$ \[Capacity (as before)]
+- for each $v \in V$: $\sum_{e in V}{f(e)}-\sum_{e out V}{f(e)} = d(v)$ \[Conservation]
+In this case we won't have a source or a sink, but we'll be having supply nodes ($d(v) < 0$), demand nodes ($d(v) > 0$), and transshipment nodes.
+
+We can formulate it as a max-flow problem, by adding source $s$ and sink $t$, and:
+- for each $v$ with $d(v)<0$, we'll add an edge $(s,v)$ with capacity $c_{(s,v)} = -d(v)$
+- for each $v$ with $d(v) > 0$, we add an edge $(v, t)$ with capacity $c_{(v,t)} = d(v)$
+If we have lower bounds to be satisfied we may want to also add the decisional problem of _feasible circulation_, which can still be modeled to a max-flow problem by updating the demands in both endpoints. $f(e)$ is a circulation in $G$ iff $f\prime (e) = f(e)-l(e)$ is a circulation in $G\prime$.
+![[Pasted image 20250201183858.png]]
+### Project Selection
+Prerequisites:
+- Set of possible projects $P$: Project $v$ has associated revenue/cost $p_v$
+- Set of prerequisites $E$: if $(v,w) \in E$, cannot do project $v$ unless we also do project $w$.
+- A subset of projects $A$ in $P$ is feasible if the prerequisite for every project in $A$ also belongs in $A$.
+We'll create a prerequisite graph in which all nodes are projects, and we'll add edge $(v,w)$ if we cannot do $v$ without doing $w$. We'll assign infinite capacity to all prerequisite edges.
+
+At this point we'll do a very similar thing we did to circulation->max-flow (with demand nodes as cost, supply as revenue).
+- we add edge $(s,v)$ with capacity $p_v >0$
+- we add edge $(v,t)$ with capacity $-p_v$ if $p_v < 0$
