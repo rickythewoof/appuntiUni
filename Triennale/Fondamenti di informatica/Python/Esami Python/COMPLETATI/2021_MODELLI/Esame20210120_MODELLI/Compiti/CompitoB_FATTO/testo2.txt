@@ -1,0 +1,3 @@
+Ieri ho scritto una email a mailto:domenico@mionet  ed un’altra a mailto:pippo@topolinia.com 
+Il giorno prima invece avevo scritto a mailto:anna@anna.it ed a mailto:marco@onair.it 
+mentre l’email anna@mionet.it mi è tornata indietro

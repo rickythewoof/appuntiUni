@@ -1,0 +1,7 @@
+Roma 21/11/2016
+oggi abbiamo aperto un pacco arrivato il 12/11/2016 da CCCMRC17A11H501W
+che era stato spedito il 2/11/2016 da CCCMRC57C33H501W. Ieri abbiamo aperto un pacco del 21/2/2014 spedito il 7/2/2014 da CCCMC60D11H501W.
+
+Il caso più semplice è 11/12/2011 con cf CCCMRC96E41H501W, mentre il più difficile è 1/1/11 con CCCMRC00M57H501W e CCCMRC72Z11H501W
+
+Notate che non volete che sia accettato il formato 1/11/911, perché ambiguo ed anche i cf CCCMRC57D11H51W, CCDMRC55P13H501W e CCCSRC08S71H501W 

@@ -1,0 +1,3 @@
+Marco ha 13 anni e possiede 4 palloni
+ognuno dei 4 palloni ha disegnato il simbolo 3
+mettendo i 4 palloni vicini si ottiene il numero 13

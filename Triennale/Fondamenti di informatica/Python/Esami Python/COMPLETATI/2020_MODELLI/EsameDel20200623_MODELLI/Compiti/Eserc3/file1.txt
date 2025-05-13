@@ -1,0 +1,4 @@
+Ogni domenica <p nome='Marco Rossi'> marco incontra 
+<p nome='Mario Bianchi'> mario <p> e vanno allo 
+<l indirizzo='viale dei Gladiatori'>stadio a vedere la 
+<p casa='roma' ospite='inter'>partita<p> 

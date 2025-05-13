@@ -1,0 +1,5 @@
+questo è un testo generico
+contenente sia numeri di telefono validi,
+quali +66-55885632  0049257658964 o anche 0066-25896325 
+altri invece non validi come 025-258-859745  +36-8598-89658 
+altri ancora non intessanti come 0055-859-78512 e 009986325412 

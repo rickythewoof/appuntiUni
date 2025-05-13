@@ -1,0 +1,5 @@
+INTRODOTTA PUNTEGGIATURA
+questo testo è un esempio generico dove mailto:primo_nome@email.gk,mailto:secondo_nome@email.gkq sono indirizzi validi.
+aggiamo altri nomi ai domini con gli indirizzi mailto:aprimo_nome@email.gk è valido, ma lo è anche mailto:zsecondo_nome@email.gkq.
+ora dei nomi da non riportare in output mailto:parola@email.com e mailto:secondo_nomez@email.net
+altri non validi come mailto:primo1@nonvalido.it o mailto:primone@@nonvalido.it ed ancora mailto:sspri_mo@.nonvalido.it

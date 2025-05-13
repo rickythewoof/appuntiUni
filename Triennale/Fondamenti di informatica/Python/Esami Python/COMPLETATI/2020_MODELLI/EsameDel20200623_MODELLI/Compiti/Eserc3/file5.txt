@@ -1,0 +1,2 @@
+<p eta='80'>Massimo ha partecipato alla <g descrizione='Romaratona'>gara<g> che si teneva ieri arrivando <r posizione='789'> in posizione 789 
+alla fine della <g inizio='ore 9' fine='ore 19'>gara ha detto <s stato='buono'> di sentirsi in ottima salute nonostante la sua avanzata eta 

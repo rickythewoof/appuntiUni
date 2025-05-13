@@ -1,0 +1,5 @@
+gli indirizzi che seguono sono tutti ben formati,
+ma non si riferiscono a nessuna nazione
+
+In particolare, mailto:test@mail.com mailto:test_secondo@gmail.net ma anche
+mailto:test_secondo@gmail_qualcosa.org sono validi non si trattano di nazioni

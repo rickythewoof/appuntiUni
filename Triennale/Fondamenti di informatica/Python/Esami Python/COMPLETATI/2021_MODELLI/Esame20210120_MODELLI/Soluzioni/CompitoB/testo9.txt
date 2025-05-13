@@ -1,0 +1,4 @@
+questo testo è un esempio generico dove mailto:primonome@email.gk è valido, ma lo è anche mailto:secondonome@email.gkq
+aggiamo altri nomi ai domini con gli indirizzi mailto:aprimonome@email.gk è valido, ma lo è anche mailto:zsecondonome@email.gkq
+ora dei nomi da non riportare in output mailto:parola@email.com e mailto:secondonomez@email.net
+altri non validi come mailto:primo1@nonvalido.it o mailto:primone@@nonvalido.it ed ancora mailto:ssprimo@.nonvalido.it

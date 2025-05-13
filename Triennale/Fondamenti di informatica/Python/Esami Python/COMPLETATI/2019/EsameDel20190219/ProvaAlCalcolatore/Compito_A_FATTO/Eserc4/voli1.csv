@@ -1,0 +1,7 @@
+Città_di_partenza,Città_di_arrivo,Ora_partenza,Ora_arrivo
+Anycity,Lisbona,9,11
+Anycity,Londra,7,9
+Lisbona,Anycity,10,12
+Londra,Anycity,12,14
+Anycity,Parigi,8,9
+Parigi,Anycity,17,18

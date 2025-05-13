@@ -1,0 +1,4 @@
+17 fa parte dei numeri primi Prima di 17 nella sequenza dei numeri primi viene 13
+Dopo 17 viene 19che sommato a 4 restituisce 23  
+13 occupa la sesta posizione nella sequenza dei numeri primi
+1 non fa parte di questa sequenza

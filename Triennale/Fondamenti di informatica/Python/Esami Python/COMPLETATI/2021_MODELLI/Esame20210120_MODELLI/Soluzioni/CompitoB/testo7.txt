@@ -1,0 +1,6 @@
+questo file è un disastro,
+non vi è un solo indirizzo nel formato corretto
+ad esempio mailto :persona@poste.it ma anche mailt:persona@poste.it
+ed ancora persona@poste.it
+o anche mailto:un_nome@aruba..fr e mailto:un_nome@@aruba.fr
+mailto:unnomearuba.fr neppure si salva

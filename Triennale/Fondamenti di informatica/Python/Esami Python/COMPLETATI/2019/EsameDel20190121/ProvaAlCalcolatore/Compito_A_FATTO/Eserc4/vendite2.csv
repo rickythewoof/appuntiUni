@@ -1,0 +1,11 @@
+Acquirente,Venditore,Pittore
+Mario,,Leonardo
+Paolo,,Picasso
+Paolo,,Van_Gogh
+Gianni,,Van_Gogh
+Gianni,Paolo,Picasso
+Mario,Gianni,Van_Gogh
+Mario,,Raffaello
+Mario,,Raffaello
+Gianni,Mario,Raffaello
+Paolo,Mario,Raffaello

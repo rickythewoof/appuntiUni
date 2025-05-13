@@ -1,0 +1,1 @@
+<p nome='Michele Bianchi'>Michele<p> ha partecipato alla <g descrizione='Romaratona'>gara<g> che si teneva ieri arrivando <r posizione='1'>primo<r> 

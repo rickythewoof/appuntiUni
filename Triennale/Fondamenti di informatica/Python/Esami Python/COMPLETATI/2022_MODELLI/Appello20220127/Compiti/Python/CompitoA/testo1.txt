@@ -1,0 +1,3 @@
+Marco ha 11 anni e possiede 3 palloni
+ognuno dei 3 palloni ha disegnato il simbolo 1
+mettendo i 3 palloni vicini si ottiene il numero 111

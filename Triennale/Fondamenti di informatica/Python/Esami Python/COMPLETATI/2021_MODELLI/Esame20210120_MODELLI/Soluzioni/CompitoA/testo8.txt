@@ -1,0 +1,4 @@
+questo è un test generico, contenente sia indirizzi corretti che non corretti. 
+In particolare testi come 978-88-310-0338-4 e 978883100341-4 sono validi, anche 97814-72118189 lo è
+su codici come 9788831002414 e 6788831003414 la somma dei prodotti non rispetta il requisito
+mentre su 97-88831003414 978--8831003414 9-78-88-310-0341-4 nel formato non corretto

@@ -1,0 +1,4 @@
+125 sommato a 25 restituisce 150
+150 meno 25 restituisce 125
+tutti questi numeri sono divisibili per 5
+5 non ha altri divisori oltre 1 e 5 stesso

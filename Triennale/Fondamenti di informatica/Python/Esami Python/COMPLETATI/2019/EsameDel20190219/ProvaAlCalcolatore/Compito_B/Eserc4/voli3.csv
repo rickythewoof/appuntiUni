@@ -1,0 +1,11 @@
+Città_di_partenza,Città_di_arrivo,Ora_partenza,Ora_arrivo
+City1,Lisbona,9,11
+City1,Londra,9,12
+Lisbona,City2,10,12
+Londra,City2,12,14
+City1,Parigi,8,9
+Parigi,City2,17,18
+City1,Stoccolma,5,8
+City1,Londra,12,14
+Stoccolma,City2,10,12
+Stoccolma,City2,15,18

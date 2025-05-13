@@ -1,0 +1,2 @@
+in questo file invece i numeri di telefono inseriti sono tutti incorretti 39-345-89657 manca dela parte iniziale mentre 001-22-2589 sono meno numeri nell'ultima parte
+oppure 0022-85-89657 ha il prefisso locale di sole due cifre

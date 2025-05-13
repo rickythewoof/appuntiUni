@@ -1,0 +1,7 @@
+Acquirente,Venditore,Pittore,Nome_Quadro
+Mario,,Leonardo
+Paolo,,Picasso
+Paolo,,Van_Gogh
+Gianni,,Van_Gogh
+Gianni,Paolo,Picasso
+Mario,Gianni,Van_Gogh

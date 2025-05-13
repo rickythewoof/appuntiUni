@@ -1,0 +1,6 @@
+in questo primo caso vogliamo
+inserire solo indirizzi e-mail
+corretti.
+Questi non si riferivano a nazioni 
+ma invece mailto:persona@poste.it e mailto:unnome@aruba.fr ma anche
+mailto:paolapozzopieno@societafittizia.euro ma anche altre come mailto:angelo@lamiasocieta.zzz

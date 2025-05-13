@@ -1,0 +1,3 @@
+Questo è un esempio di un file di testo.
+Occupa quattro righe
+Riga 4

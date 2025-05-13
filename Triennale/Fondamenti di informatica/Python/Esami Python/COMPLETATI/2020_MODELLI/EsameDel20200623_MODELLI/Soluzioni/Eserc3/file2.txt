@@ -1,0 +1,3 @@
+<p eta='25'>Michele ha venticinque anni e sua sorella 
+<p eta='30'>Maria ne ha trenta. Entrambi vivono a <l citta='Roma'>Roma 
+Ieri hanno comprato una <o auto='BMW'>macchina nuova per sostituire quella <o auto='BMW'>vecchia che era stata <p reato='furto>rubata

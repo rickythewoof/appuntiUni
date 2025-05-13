@@ -1,0 +1,4 @@
+Il mio collega usa le mail marco.rossi@gmail.com rossi@yahoo.it 
+Io uso giorgio.bianchi@apple.com e bianchi@microsoft.com
+Poi ferro@ping.com e paolo.ferro@ping.it
+rossi@apple.com invece di marco.rossi@apple.it
