@@ -1,0 +1,9 @@
+ip link set eth0 address 06:07:08:09:0a:0b
+ip addr add 10.0.2.100/24 dev eth0
+ip -6 addr add a2::100/64 dev eth0 
+
+arp -s 10.0.2.1 06:07:08:09:0a:bb
+ip -6 neigh add a2::1 lladdr 06:07:08:09:0a:bb dev eth0
+
+ip route add default via 10.0.2.1 dev eth0
+ip -6 route add default via a2::1 dev eth0

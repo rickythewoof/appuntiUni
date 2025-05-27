@@ -1,0 +1,3 @@
+[submodule "Magistrale/ProgrammableNetworks/load-balancing"]
+	path = Magistrale/ProgrammableNetworks/load-balancing
+	url = https://github.com/rickythewoof/load-balancing

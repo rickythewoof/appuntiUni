@@ -1,0 +1,5 @@
+table_add ipv4_forwarding_table ipv4_forward 10.0.1.100/32 => 00:01:02:03:04:05 1
+table_add ipv4_forwarding_table ipv4_forward 10.0.2.100/32 => 06:07:08:09:0a:0b 2
+
+table_add ipv6_forwarding_table ipv6_forward a1::100/64 => 00:01:02:03:04:05 1
+table_add ipv6_forwarding_table ipv6_forward a2::100/64 => 06:07:08:09:0a:0b 2

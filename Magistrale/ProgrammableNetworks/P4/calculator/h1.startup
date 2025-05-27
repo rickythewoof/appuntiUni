@@ -1,0 +1,5 @@
+ip addr add 10.0.0.100/24 dev eth0 
+
+route add default gw 10.0.0.1
+
+arp -s 10.0.0.1 00:01:02:03:04:05

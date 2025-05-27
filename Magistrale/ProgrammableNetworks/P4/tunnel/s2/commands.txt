@@ -1,0 +1,1 @@
+table_add MyIngress.ipv4_lpm ipv4_forward 10.0.0.2/32 => 00:01:02:03:04:22 1
