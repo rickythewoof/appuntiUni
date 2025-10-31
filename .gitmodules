@@ -1,3 +1,6 @@
 [submodule "Magistrale/ProgrammableNetworks/load-balancing"]
 	path = Magistrale/ProgrammableNetworks/load-balancing
 	url = https://github.com/rickythewoof/load-balancing
+[submodule "Magistrale/repos/DataManagementProject"]
+	path = Magistrale/repos/DataManagementProject
+	url = https://github.com/rickythewoof/blockchain-db
